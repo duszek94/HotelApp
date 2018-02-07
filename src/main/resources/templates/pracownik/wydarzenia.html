@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Toruń Hotel-Walter** | Noclegi | Imprezy | Posiłki - Hotel-Walter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/notify.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/loader.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-datetimepicker.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-table.css}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+
+
+
+<div class="container">
+    <div class="content">
+        <div class="imageUroczystosci">
+            <div class="imageHeader">
+                <img src="/images/hotelwalterlogo22.png"/>
+            </div>
+
+            <div class="top-block">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span>
+                        &nbsp;&nbsp;Zarządzanie wydarzeniami w hotelu
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#addEvent">
+                                <span class="glyphicon glyphicon-home"></span>&nbsp;Dodaj wydarzenie
+                            </button>
+                            <div id="toolbarEvents" style="color: #090909;">
+                                <button id="remove" class="btn btn-danger" disabled>
+                                    <i class="glyphicon glyphicon-remove"></i> Usuń
+                                </button>
+                            </div>
+                            <table id="tableEvents"
+                                   data-toolbar="#toolbarEvents"
+                                   data-show-refresh="true"
+                                   data-show-toggle="true"
+                                   data-show-columns="true"
+                                   data-detail-view="true"
+                                   data-detail-formatter="detailFormatter"
+                                   data-minimum-count-columns="2"
+                                   data-show-pagination-switch="true"
+                                   data-pagination="true"
+                                   data-page-list="[10, 25, 50, 100, ALL]"
+                                   data-show-footer="false"
+                                   data-align="center"
+                                   data-response-handler="responseHandler"
+                                   class="table table-striped"
+                                   style="color: #090909;">
+                                <thead>
+                                <th data-field="state" data-checkbox="true"></th>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div id="notify_layer" style="position: fixed; top: 100px;"></div>
+
+</div>
+
+<div class="modal fade" id="addEvent" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nowe wydarzenie</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div id="addEventForm">
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text"
+                                       id="firstname"
+                                       name="firstname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Imię"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text"
+                                       id="lastname"
+                                       name="lastname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Nazwisko"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                <input type="text"
+                                       id="phone"
+                                       name="phone"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Telefon"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-th-large"></i></span>
+                                <input type="text"
+                                       id="tittle"
+                                       name="tittle"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Tytuł wydarzenia"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <input type="number"
+                                       id="countOfGuests"
+                                       name="countOfGuests"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Liczba gości"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                <input type="number"
+                                       id="price"
+                                       name="price"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Cena"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <p>Data wydarzenia: </p>
+                                <div class='input-group date' id='datetimepicker111'>
+                                    <input type='text' class="form-control"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="eventDetails" style="margin: 15px; width: 100%;max-width: 500px;clear: both; vertical-align: bottom;">
+                            <div class="form-group" style="width: 100%; max-width: 500px;">
+                                <label>Wymagania/informacje:</label>
+                                <textarea class="form-control details" style="resize: none;" rows="5" id="details"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 form-group">
+                            <div class="input-group">
+                                <label>Metoda płatności:</label><br>
+                                <label class="radio-inline"><input type="radio" value="cash" name="eventMethod">Gotówka</label>
+                                <label class="radio-inline"><input type="radio" value="transfer" name="eventMethod">Przelew</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-6 form-group">
+                            <button id="commitAddEvent" type="button" class="btn btn-success">Dodaj wydarzenie</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editEvent" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edytuj wydarzenie</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div id="editEventForm">
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text"
+                                       id="editFirstname"
+                                       name="firstname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Imię"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text"
+                                       id="editLastname"
+                                       name="lastname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Nazwisko"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                <input type="text"
+                                       id="editPhone"
+                                       name="phone"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Telefon"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-th-large"></i></span>
+                                <input type="text"
+                                       id="editTittle"
+                                       name="tittle"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Tytuł wydarzenia"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <input type="number"
+                                       id="editCountOfGuests"
+                                       name="countOfGuests"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Liczba gości"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                <input type="number"
+                                       id="editPrice"
+                                       name="price"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Cena"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <p>Data wydarzenia: </p>
+                                <div class='input-group date' id='datetimepicker1111'>
+                                    <input type='text' class="form-control"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="editEventDetails" style="margin: 15px; width: 100%;max-width: 500px;clear: both; vertical-align: bottom;">
+                            <div class="form-group" style="width: 100%; max-width: 500px;">
+                                <label>Wymagania/informacje:</label>
+                                <textarea class="form-control details" style="resize: none;" rows="5" id="editDetails"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 form-group">
+                            <div class="input-group">
+                                <label>Metoda płatności:</label><br>
+                                <label class="radio-inline"><input type="radio" value="cash" name="editEventMethod">Gotówka</label>
+                                <label class="radio-inline"><input type="radio" value="transfer" name="editEventMethod">Przelew</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-6 form-group">
+                            <button id="commitEditEvent" type="button" class="btn btn-success">Zatwierdź edycję</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/navbar :: navbar"/>
+<div th:replace="fragments/modals :: modals"/>
+
+
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.cycle2.min.js}"></script>
+<script th:src="@{/js/notify.js}"></script>
+<script th:src="@{/js/bootstrapNotify.js}"></script>
+<script th:src="@{/js/bootstrap-table.js}"></script>
+<script th:src="@{/js/bootstrap-table-export.js}"></script>
+<script th:src="@{/js/bootstrap-table-editable.js}"></script>
+<script th:src="@{/js/moment-with-locales.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/js/basicScripts.js}"></script>
+
+
+<script th:inline="javascript">
+
+    $(document).ready(function () {
+        var errorMessage = [[${errorMessage}]];
+        var successMessage = [[${successMessage}]];
+
+        if(errorMessage !== null){
+            notify.danger(errorMessage)
+        }
+        if(successMessage !== null){
+            notify.success(successMessage)
+        }
+    });
+</script>
+
+
+<script>
+    $(function () {
+        $('#datetimepicker111').datetimepicker({
+            defaultDate: new Date(),
+            minDate: new Date(),
+            format: 'DD/MM/YYYY',
+            useCurrent: false //Important! See issue #1075
+        });
+    });
+</script>
+
+<script>
+    var $table = $('#tableEvents'),
+        $remove = $('#remove'),
+        selections = [];
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    var preloader = $('.loader');
+    var showbox = $('.showbox');
+
+
+    function initTable(data) {
+        $table.bootstrapTable({
+            height: getHeight(),
+            data: data,
+            columns: [
+                {
+                    title: 'id',
+                    field: 'state',
+                    checkbox: true,
+                },
+                {
+                    title: 'ID w systemie',
+                    field: 'eventId',
+                    sortable: true,
+                },
+                {
+                    field: 'firstname',
+                    title: 'Imię',
+                    sortable: true,
+                },
+                {
+                    field: 'lastname',
+                    title: 'Nazwisko',
+                    sortable: true,
+                },
+                {
+                    field: 'eventDate',
+                    title: 'Data',
+                    sortable: true,
+                },
+                {
+                    field: 'tittle',
+                    title: 'Nazwa',
+                    sortable: true,
+                },
+                {
+                    field: 'countOfGuests',
+                    title: 'Liczba gości',
+                    sortable: true,
+                },
+                {
+                    field: 'price',
+                    title: 'Cena',
+                    sortable: true,
+                    formatter: priceFormatter
+                },
+                {
+                    field: 'edit',
+                    title: 'Edytuj',
+                    align: 'center',
+                    formatter: editFormatter,
+                    events: editEvents,
+                },
+            ],
+        });
+
+
+        $table.bootstrapTable('uncheckAll');
+
+        // sometimes footer render error.
+        setTimeout(function () {
+            $table.bootstrapTable('resetView');
+        }, 200);
+        $table.on('check.bs.table uncheck.bs.table ' +
+            'check-all.bs.table uncheck-all.bs.table', function () {
+            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+
+            selections = getIdSelections();
+        });
+
+        $table.on('all.bs.table', function (e, name, args) {
+            console.log(name, args);
+        });
+        $table.on('refresh.bs.table', function (params) {
+            $(preloader).css({'display': 'block'});
+            console.log("Table refreshed!");
+            console.log(params);
+
+            refreshTable();
+        });
+        $remove.click(function () {
+            var ids = getIdSelections();
+            var idsJSON = JSON.stringify(ids);
+
+            $.ajax({
+                url: '/api/event/delete',
+                dataType: 'text',
+                type: 'post',
+                contentType: 'application/json',
+                data: idsJSON,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+                success(msg){
+                    notify.success(msg);
+                    refreshTable();
+                },
+                error(msg){
+                    notify.danger(msg);
+                    refreshTable();
+                }
+            });
+
+            $remove.prop('disabled', true);
+        });
+        $(window).resize(function () {
+            $table.bootstrapTable('resetView', {
+                height: getHeight()
+            });
+        });
+    }
+    function editFormatter(value, row, index) {
+        return [
+            '<a class="editEvent" title="Edytuj" data-toggle="modal" ' +
+            'data-target="#editEvent" style="cursor: pointer">',
+            '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    function detailFormatter(index, row) {
+        var html = [];
+        html.push('<p><b>ID w systemie: </b> ' + row.eventId + '</p>' +
+            '<p><b>Imię: </b> ' + row.firstname + '</p>' +
+            '<p><b>Nazwisko: </b> ' + row.lastname + '</p>' +
+            '<p><b>Telefon: </b> ' + row.phone + '</p>' +
+            '<p><b>Data: </b> ' + row.eventDate + '</p>' +
+            '<p><b>Nazwa: </b> ' + row.tittle + '</p>' +
+            '<p><b>Cena: </b> ' + row.price + ' zł. </p>' +
+            '<p><b>Liczba gości: </b> ' + row.countOfGuests + ' </p>' +
+            '<p><b>Metoda płatności: </b> ' + row.paymentMethod + '</p>' +
+            '<p><b>Szczegóły/wymagania: </b> ' + row.details + '</p>')
+        return html.join('');
+    }
+
+    function responseHandler(res) {
+        $.each(res.rows, function (i, row) {
+            row.eventId = $.inArray(row.eventId, selections) !== -1;
+        });
+        return res;
+    }
+
+    window.editEvents = {
+        'click .editEvent': function (e, value, row, index) {
+            var firstname = $('#editFirstname');
+            var lastname = $('#editLastname');
+            var price = $('#editPrice');
+            var phone = $('#editPhone');
+            var countOfGuests = $('#editCountOfGuests');
+            var details = $('#editDetails');
+            var tittle = $('#editTittle');
+
+            firstname.val(row.firstname);
+            lastname.val(row.lastname);
+            price.val(row.price);
+            phone.val(row.phone);
+            countOfGuests.val(row.countOfGuests);
+            details.val(row.details);
+            tittle.val(row.tittle);
+            $('input:radio[name="editEventMethod"]').filter('[value=' + row.paymentMethod + ']').attr('checked','checked');
+            $('#datetimepicker1111').find("input").val(row.eventDate);
+
+            var commitEditEvent = $('#commitEditEvent');
+
+            commitEditEvent.click(function () {
+                var firstname = $('#editFirstname').val();
+                var lastname = $('#editLastname').val();
+                var price = $('#editPrice').val();
+                var phone = $('#editPhone').val();
+                var countOfGuests = $('#editCountOfGuests').val();
+                var details = $('#editDetails').val();
+                var tittle = $('#editTittle').val();
+                var eventDate = $('#datetimepicker1111').find("input").val();
+                var paymentMethod = $("input:radio[name='editEventMethod']:checked").val();
+
+                var eventDto = {
+                    "eventId" : row.eventId,
+                    "firstname" : firstname,
+                    "lastname" : lastname,
+                    "price" : price,
+                    "phone" : phone,
+                    "countOfGuests" : countOfGuests,
+                    "details" : details,
+                    "tittle" : tittle,
+                    "eventDate" : eventDate,
+                    "paymentMethod" : paymentMethod
+                }
+
+                var eventData = JSON.stringify(eventDto);
+
+                $.ajax({
+                    url: '/api/event/update',
+                    dataType: 'text',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: eventData,
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+
+                    success: function () {
+                        notify.success("Uaktualniono wydarzenie");
+                        $('#editEvent').modal('hide');
+                        preloader.css({'display': 'none'});
+                        refreshTable();
+                    },
+                    error: function () {
+                        notify.danger('Wystąpił błąd podczas uaktualniania wydarzenia');
+                        $('#editEvent').modal('hide');
+                        preloader.css({'display': 'none'});
+                        return;
+                    }
+                });
+
+            });
+
+        },
+    };
+
+    function getIdSelections() {
+        return $.map($table.bootstrapTable('getSelections'), function (row) {
+            return row.eventId;
+        });
+    }
+
+    function priceFormatter(value, row, index) {
+        return [
+            row.price + ' zł.'
+        ].join('');
+    }
+
+
+    function getHeight() {
+        return $(window).height() - $('.navbar').outerHeight(true) + 14;
+    }
+
+    $('#commitAddEvent').click(function () {
+        var firstname = $('#firstname');
+        var lastname = $('#lastname');
+        var paymentMethod = $("input:radio[name='eventMethod']:checked").val();
+        var price = $('#price');
+        var phone = $('#phone');
+        var countOfGuests = $('#countOfGuests');
+        var details = $('#details');
+        var tittle = $('#tittle');
+        var eventDate = $('#datetimepicker111').find("input").val();
+
+        var event = {
+            "firstname" : firstname.val(),
+            "lastname" : lastname.val(),
+            "paymentMethod" : paymentMethod,
+            "price" : price.val(),
+            "phone" : phone.val(),
+            "countOfGuests" : countOfGuests.val(),
+            "details" : details.val(),
+            "tittle" : tittle.val(),
+            "eventDate" : eventDate
+        };
+
+        var eventDto = JSON.stringify(event);
+
+        $.ajax({
+            url: '/api/event/add',
+            dataType: 'text',
+            type: 'post',
+            contentType: 'application/json',
+            data: eventDto,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success(msg){
+                $('#addEvent').modal('hide');
+                if(msg == "Dodano wydarzenie"){
+                    notify.success(msg);
+                    refreshTable();
+                }else{
+                    notify.danger(msg);
+                    refreshTable();
+                }
+            },
+            error(msg){
+                $('#addRoom').modal('hide');
+                notify.danger(msg);
+                refreshTable();
+            }
+        });
+    });
+
+    loadDataForTable();
+
+    function loadDataForTable() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/event/all',
+            dataType: 'json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (eventDto) {
+                if(!eventDto.success){
+                    err();
+                    return;
+                }
+
+                var events = eventDto.list;
+
+                initTable(events);
+
+                $(preloader).css({'display': 'none'});
+                $(showbox).css({'display': 'none'});
+                $('.container').fadeIn(1600);
+            },
+            error: function () {
+                notify.danger("Wystąpił błąd podczas pobierania danych z bazy");
+            }
+        });
+    }
+
+
+
+    function err() {
+        $(showbox).show();
+        $(preloader).show();
+    }
+
+
+    function refreshTable() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/event/all',
+            dataType: 'json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (eventDto) {
+                if(!eventDto.success){
+                    err();
+                    return;
+                }
+
+                var events = eventDto.list;
+
+                $table.bootstrapTable("load", events);
+                $table.bootstrapTable('uncheckAll');
+
+                $(preloader).css({'display': 'none'});
+            },
+            error: function () {
+                notify.danger("Wystąpił błąd podczas pobierania danych z bazy");
+            }
+        });
+    }
+
+
+
+</script>
+</body>
+</html>
+

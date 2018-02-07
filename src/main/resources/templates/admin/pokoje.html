@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Toruń Hotel-Walter** | Noclegi | Imprezy | Posiłki - Hotel-Walter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/notify.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/loader.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-datetimepicker.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-table.css}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+
+
+
+<div class="container">
+    <div class="content">
+        <div class="imageUroczystosci">
+            <div class="imageHeader">
+                <img src="/images/hotelwalterlogo22.png"/>
+            </div>
+
+            <div class="top-block">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span>
+                        &nbsp;&nbsp;Zarządzanie pokojami
+                    </div>
+                    <div class="panel-body">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#addRoom">
+                            <span class="glyphicon glyphicon-home"></span>&nbsp;Dodaj pokój
+                        </button>
+                        <div class="table-responsive">
+                            <div id="toolbarRooms" style="color: #090909;">
+                                <button id="remove" class="btn btn-danger" disabled>
+                                    <i class="glyphicon glyphicon-remove"></i> Usuń
+                                </button>
+                            </div>
+                            <table id="tableRooms"
+                                   data-toolbar="#toolbarRooms"
+                                   data-show-refresh="true"
+                                   data-show-toggle="true"
+                                   data-show-columns="true"
+                                   data-detail-view="true"
+                                   data-detail-formatter="detailFormatter"
+                                   data-minimum-count-columns="2"
+                                   data-show-pagination-switch="true"
+                                   data-pagination="true"
+                                   data-page-list="[10, 25, 50, 100, ALL]"
+                                   data-show-footer="false"
+                                   data-align="center"
+                                   data-response-handler="responseHandler"
+                                   class="table table-striped"
+                                   style="color: #090909;">
+                                <thead>
+                                <th data-field="state" data-checkbox="true"></th>
+                                </thead>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div id="notify_layer" style="position: fixed; top: 100px;"></div>
+
+</div>
+
+<div class="modal fade" id="addRoom" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Dodawanie nowego pokoju</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div id="addRoomForm">
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <label class="radio-inline"><input type="radio" value="2os" name="addRoomType">2 osobowy</label>
+                                <label class="radio-inline"><input type="radio" value="3os" name="addRoomType">3 osobowy</label>
+                                <label class="radio-inline"><input type="radio" value="ap" name="addRoomType">Apartament</label>
+                                <label class="radio-inline"><input type="radio" value="apDL" name="addRoomType">Apartament DeLux</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input type="number"
+                                       id="roomNumber"
+                                       name="number"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Numer pokoju"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <button id="commitAddRoom" type="button" class="btn btn-success">Dodaj pokój</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/navbar :: navbar"/>
+<div th:replace="fragments/modals :: modals"/>
+
+
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.cycle2.min.js}"></script>
+<script th:src="@{/js/notify.js}"></script>
+<script th:src="@{/js/moment-with-locales.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/js/bootstrapNotify.js}"></script>
+<script th:src="@{/js/bootstrap-table.js}"></script>
+<script th:src="@{/js/bootstrap-table-export.js}"></script>
+<script th:src="@{/js/bootstrap-table-editable.js}"></script>
+
+
+<script th:inline="javascript">
+
+    $(document).ready(function () {
+        var errorMessage = [[${errorMessage}]];
+        var successMessage = [[${successMessage}]];
+
+        if(errorMessage !== null){
+            notify.danger(errorMessage)
+        }
+        if(successMessage !== null){
+            notify.success(successMessage)
+        }
+    });
+
+</script>
+
+<script>
+    var $table = $('#tableRooms'),
+        $remove = $('#remove'),
+        selections = [];
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    var preloader = $('.loader');
+    var showbox = $('.showbox');
+
+
+    function initTable(data) {
+        $table.bootstrapTable({
+            height: getHeight(),
+            data: data,
+            columns: [
+                {
+                    title: 'id',
+                    field: 'state',
+                    checkbox: true,
+                },
+                {
+                    title: 'ID w systemie',
+                    field: 'roomId',
+                    sortable: true,
+                },
+                {
+                    field: 'roomNumber',
+                    title: 'Numer pokoju',
+                    sortable: true,
+                },
+                {
+                    field: 'roomType',
+                    title: 'Typ pokoju',
+                    sortable: true,
+                },
+                {
+                    field: 'price',
+                    title: 'Cena za nocleg(bez śniadań)',
+                    sortable: true,
+                    formatter: priceFormatter
+                },
+            ],
+        });
+
+
+        $table.bootstrapTable('uncheckAll');
+
+        // sometimes footer render error.
+        setTimeout(function () {
+            $table.bootstrapTable('resetView');
+        }, 200);
+        $table.on('check.bs.table uncheck.bs.table ' +
+            'check-all.bs.table uncheck-all.bs.table', function () {
+            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+
+            selections = getIdSelections();
+        });
+
+        $table.on('all.bs.table', function (e, name, args) {
+            console.log(name, args);
+        });
+        $table.on('refresh.bs.table', function (params) {
+            $(preloader).css({'display': 'block'});
+            console.log("Table refreshed!");
+            console.log(params);
+
+            refreshTable();
+        });
+        $remove.click(function () {
+            var ids = getIdSelections();
+            var idsJSON = JSON.stringify(ids);
+
+            $.ajax({
+                url: '/api/event/delete',
+                dataType: 'text',
+                type: 'post',
+                contentType: 'application/json',
+                data: idsJSON,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+                success(msg){
+                    notify.success(msg);
+                    refreshTable();
+                },
+                error(msg){
+                    notify.danger(msg);
+                    refreshTable();
+                }
+            });
+
+            $remove.prop('disabled', true);
+        });
+        $(window).resize(function () {
+            $table.bootstrapTable('resetView', {
+                height: getHeight()
+            });
+        });
+    }
+
+    function detailFormatter(index, row) {
+        var html = [];
+        html.push('<p><b>ID w systemie: </b> ' + row.roomId + '</p>' +
+            '<p><b>Numer pokoju: </b> ' + row.roomNumber + '</p>' +
+            '<p><b>Typ pokoju: </b> ' + row.roomType + '</p>' +
+            '<p><b>Cena za nocleg: </b> ' + row.price + ' zł. </p>')
+        return html.join('');
+    }
+
+    function responseHandler(res) {
+        $.each(res.rows, function (i, row) {
+            row.eventId = $.inArray(row.eventId, selections) !== -1;
+        });
+        return res;
+    }
+
+    function getIdSelections() {
+        return $.map($table.bootstrapTable('getSelections'), function (row) {
+            return row.eventId;
+        });
+    }
+
+    function priceFormatter(value, row, index) {
+        return [
+           row.price + ' zł.'
+        ].join('');
+    }
+
+
+    function getHeight() {
+        return $(window).height() - $('.navbar').outerHeight(true) + 14;
+    }
+
+    $('#commitAddRoom').click(function () {
+        var roomNumber = $('#roomNumber').val();
+        var roomType = $("input:radio[name='addRoomType']:checked").val();
+        var price;
+        if(roomType == "2os"){
+            price = 120;
+        }else if(roomType == "3os"){
+            price = 150;
+        }else if(roomType == "ap"){
+            price = 180;
+        }else if(roomType == "apDL"){
+            price = 200;
+        }
+
+        var room = {
+            "roomType" : roomType,
+            "roomNumber" : roomNumber,
+            "price" : price
+        };
+
+        var roomDto = JSON.stringify(room);
+
+        $.ajax({
+            url: '/api/room/create',
+            dataType: 'text',
+            type: 'post',
+            contentType: 'application/json',
+            data: roomDto,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success(msg){
+                $('#addRoom').modal('hide');
+                if(msg == "Dodano pokój"){
+                    notify.success(msg);
+                    refreshTable();
+                }else{
+                    notify.danger(msg);
+                    refreshTable();
+                }
+            },
+            error(msg){
+                $('#addRoom').modal('hide');
+                notify.danger(msg);
+                refreshTable();
+            }
+        });
+    });
+
+    loadDataForTable();
+
+    function loadDataForTable() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/room/all',
+            dataType: 'json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (roomsDto) {
+                if(!roomsDto.success){
+                    err();
+                    return;
+                }
+
+                var rooms = roomsDto.list;
+
+                initTable(rooms);
+
+                $(preloader).css({'display': 'none'});
+                $(showbox).css({'display': 'none'});
+                $('.container').fadeIn(1600);
+            },
+            error: function () {
+                notify.danger("Wystąpił błąd podczas pobierania danych z bazy");
+            }
+        });
+    }
+
+
+
+    function err() {
+        $(showbox).show();
+        $(preloader).show();
+    }
+
+
+    function refreshTable() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/room/all',
+            dataType: 'json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (roomsDto) {
+                if(!roomsDto.success){
+                    err();
+                    return;
+                }
+
+                var rooms = roomsDto.list;
+
+                $table.bootstrapTable("load", rooms);
+                $table.bootstrapTable('uncheckAll');
+
+                $(preloader).css({'display': 'none'});
+            },
+            error: function () {
+                notify.danger("Wystąpił błąd podczas pobierania danych z bazy");
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>
+

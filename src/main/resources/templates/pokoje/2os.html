@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Toruń Hotel-Walter** | Noclegi | Imprezy | Posiłki - Hotel-Walter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/slider.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/pokoje.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/loader.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-datetimepicker.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/roomResult.css}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+
+
+<div class="container">
+    <div class="content">
+        <div class="imagePokoje">
+            <div class="imageHeader">
+                <img src="/images/hotelwalterlogo22.png"/>
+                Skontaktuj się z nami, tel. <div style="color: white; font-weight: bold; display: inline-block;">+48 56 654 25 83</div>
+            </div>
+
+            <div class="top-flex">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span>
+                        &nbsp;&nbsp;Pokój 2-osobowy
+                    </div>
+                    <div class="panel-body" style="display: flex">
+                        <div class="roomsContent">
+                            <h4>
+                                Pokój ten dysponuje łazienką i biurkiem. <br><br><br><br>
+
+
+
+                                Powierzchnia pokoju 18 m²<br><br><br><br><br><br>
+
+
+                                Cena noclegu <b>120 zł</b> Brutto
+                                <br>+ śniadanie(opcjonalnie) <b>20zł</b>
+                            </h4>
+                        </div>
+
+                        <!-- Images used to open the lightbox -->
+                        <div class="row row2" align="right">
+                            <div class="column">
+                                <img src="/images/pokoje/2os/1.jpg" onclick="openModal();currentSlide(1)" class="hover-shadow">
+                            </div>
+                            <div class="column">
+                                <img src="/images/pokoje/2os/2.jpg" onclick="openModal();currentSlide(2)" class="hover-shadow">
+                            </div>
+                            <div class="column">
+                                <img src="/images/pokoje/2os/3.jpg" onclick="openModal();currentSlide(3)" class="hover-shadow">
+                            </div>
+                            <div class="column">
+                                <img src="/images/pokoje/2os/4.jpg" onclick="openModal();currentSlide(4)" class="hover-shadow">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- The Modal/Lightbox -->
+                <div id="myModal" class="modal2">
+                    <span class="close cursor" onclick="closeModal()">&times;</span>
+                    <div class="modal-content2">
+
+                        <div class="wrapper">
+                            <div class="mySlides">
+                                <div class="numbertext">1 / 4</div>
+                                <img src="/images/pokoje/2os/1.jpg">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">2 / 4</div>
+                                <img src="/images/pokoje/2os/2.jpg">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">3 / 4</div>
+                                <img src="/images/pokoje/2os/3.jpg">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">4 / 4</div>
+                                <img src="/images/pokoje/2os/4.jpg">
+                            </div>
+
+                            <!-- Next/previous controls -->
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                            <!-- Caption text -->
+                            <div class="caption-container">
+                                <p id="caption"></p>
+                            </div>
+                        </div>
+
+
+                        <!-- Thumbnail image controls -->
+                        <div class="row thumbnails">
+                            <div class="column">
+                                <img class="demo" src="/images/pokoje/2os/1.jpg" onclick="currentSlide(1)" alt="Pokój 2 osobowy">
+                            </div>
+
+                            <div class="column">
+                                <img class="demo" src="/images/pokoje/2os/2.jpg" onclick="currentSlide(2)" alt="Pokój 2 osobowy">
+                            </div>
+
+                            <div class="column">
+                                <img class="demo" src="/images/pokoje/2os/3.jpg" onclick="currentSlide(3)" alt="Pokój 2 osobowy">
+                            </div>
+
+                            <div class="column">
+                                <img class="demo" src="/images/pokoje/2os/4.jpg" onclick="currentSlide(4)" alt="Pokój 2 osobowy">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="black" style="background-color: rgba(17, 17, 17, 1);">
+            <div class="blackContentWrapper">
+                <div class="blackContent">
+                    <h4>
+                        <b>Udogodnienia w pokoju:</b>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="black" style="background-color: rgba(10, 10, 10, 1);">
+            <div class="blackContentWrapper">
+                <div class="blackContent">
+                    <h4>
+                        - prysznic<br>
+                        - telefon<br>
+                        - biurko<br>
+                        - toaleta<br>
+                        - łazienka<br>
+                        - ogrzewanie<br>
+                        - telewizor z płaskim ekranem<br>
+                        - podłoga wyłożona kafelkami lub marmurem<br>
+                        - widok<br>
+                        - budzenie na życzenie<br>
+                        - szafa / garderoba<br>
+                        - ręczniki<br>
+                        - pościel<br>
+                        - dojazd windą na wyższe piętra<br>
+                        - wieszak na ubrania<br>
+                        - kabina prysznicowa<br>
+                        - kosze na śmieci<br>
+                        - dostęp przy pomocy windy
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div th:replace="fragments/navbar :: navbar"/>
+<div th:replace="fragments/modals :: modals"/>
+
+
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.cycle2.min.js}"></script>
+<script th:src="@{/js/sliderThumbnails.js}"></script>
+<script th:src="@{/js/notify.js}"></script>
+<script th:src="@{/js/moment-with-locales.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/js/bootstrapNotify.js}"></script>
+<script th:src="@{/js/basicScripts.js}"></script>
+
+
+</body>
+</html>

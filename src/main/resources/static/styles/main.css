@@ -1,0 +1,722 @@
+body{
+    font-family: 'Play', sans-serif;
+    background-color: black;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+img{
+    max-width: 100%;
+    border-radius: 5px!important;
+}
+
+.panel-default>.panel-heading, .panel-default>.panel-footer {
+    background-color: black !important;
+    color: white !important;
+    /*border: none !important;*/
+    font-size: 18px!important;
+    font-weight: 100!important;
+    border: none;
+}
+
+.panel-default {
+    background-color: rgba(24, 24, 24, 0.6)!important;
+    font-size: 18px;
+    -webkit-box-shadow: 0 1px 3px 1px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 1px 3px 1px rgba(0,0,0,0.25);
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.25);
+    border: none !important;
+    font-weight: 100!important;
+    border-radius: 3px;
+}
+
+.panel-body{
+    background: transparent!important;
+}
+
+.modal {
+    color:black!important;
+    overflow-y: visible;
+}
+
+.modal-open {
+    color:black!important;
+    padding-right: 0 !important;
+    overflow: visible;
+}
+
+@media (min-width: 768px) {
+    .modal-xl {
+        width: 90%;
+        max-width:1200px;
+    }
+}
+
+.userName{
+    line-height: 70px;
+    padding: 0px 20px 0px 20px;
+    margin-left: 30px;
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+.imgs{
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    margin:auto;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    margin: 50px;
+}
+.imgs{
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    margin:auto;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    margin: 50px;
+}
+
+
+#slider {
+    position: relative;
+    margin: 10px;
+    width: 100%;
+    height: 100%;
+    max-width: 590px;
+    max-height: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+#sliderMainPage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.navbar {
+    min-height: 70px;
+}
+
+.navbar-brand {
+    padding: 0 15px;
+    height: 70px;
+    line-height: 70px;
+}
+
+.navbar-toggle {
+    /* (80px - button height 34px) / 2 = 23px */
+    margin-top: 18px;
+    padding: 9px 10px !important;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+        /* (80px - line-height of 27px) / 2 = 26.5px */
+        padding-top: 23.5px;
+        padding-bottom: 23.5px;
+        line-height: 23px;
+    }
+}
+
+#sliderGastro {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.registration{
+    display: flex;
+    flex-flow: column wrap;
+    max-height: 200px;
+}
+
+.registrationWrapper{
+    margin: 25px 30px 25px 30px;
+    max-width: 450px;
+}
+
+
+.form-group{
+    margin-right: 10px!important;
+}
+
+.top-flex{
+    min-width: 600px;
+    padding:  10px;
+    margin: 0 auto;
+    display: flex;
+    padding: 20px 100px 20px 100px;
+    text-align: left;
+    justify-content:center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.top-block{
+    min-width: 600px;
+    padding:  10px;
+    margin: 0 auto;
+    display: block;
+    padding: 20px 100px 20px 100px;
+    text-align: left;
+    justify-content:center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.content{
+    color: #fff;
+    margin-top: 65px!important;
+}
+
+#imageHome{
+    text-align: center;
+    opacity: 1;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -99;
+}
+
+.imageUroczystosci{
+    min-height: 390px;
+    text-align: center;
+    opacity: 1;
+    background: url('../images/backgrounds/dziedziniec.png') no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.imageOferta{
+    min-height: 390px;
+    text-align: center;
+    opacity: 1;
+    background: url('../images/backgrounds/uroczystosci.png')no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.imagePokoje{
+    margin: auto;
+    min-height: 390px;
+    text-align: center;
+    opacity: 1;
+    background: url('../images/backgrounds/pokoje.jpg')no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.imagePokojeBlack{
+    min-height: 390px;
+    text-align: center;
+    opacity: 1;
+    background: black no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.imageGastro{
+    min-height: 390px;
+    text-align: center;
+    opacity: 1;
+    background: url('../images/backgrounds/gastro.jpg')no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.imageHeader{
+    font-size: 25px;
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    color: whitesmoke;
+    min-height: 90px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.imageCnt{
+    margin: 0 auto;
+    min-height: 390px;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+}
+
+.imageCnt2{
+    margin: 0 auto;
+    min-height: 320px;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+}
+
+.imageContent{
+    background-color: rgba(24, 24, 24, 0.6);
+    width: 100%;
+    height: 100%;
+    max-width: 590px;
+    max-height: 300px;
+    margin: 10px;
+    text-align: left;
+    border-radius: 5px;
+    float:left;
+    box-shadow: 0 0 30px rgba(30, 30, 30, 0.5);
+}
+
+.imageContentMap{
+    background-color: rgba(24, 24, 24, 0.6);
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    max-height: 300px;
+    margin: 10px;
+    text-align: left;
+    border-radius: 5px;
+    float:left;
+    box-shadow: 0 0 30px rgba(30, 30, 30, 0.5);
+}
+
+.imageContentRegistration{
+    background-color: rgba(24, 24, 24, 0.6);
+    width: 100%;
+    height: 100%;
+    max-width: 590px;
+    max-height: 300px;
+    margin: 10px;
+    text-align: left;
+    border-radius: 5px;
+    float:left;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.imageContentGastro{
+    background-color: rgba(24, 24, 24, 0.6);
+    width: 100%;
+    height: 100%;
+    max-width: 590px;
+    max-height: 300px;
+    margin: 10px;
+    text-align: left;
+    border-radius: 5px;
+    float:left;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.imageContentConfirm{
+    background-color: rgba(24, 24, 24, 0.6);
+    width: 100%;
+    height: 100%;
+    max-width: 780px;
+    max-height: 300px;
+    margin: 10px;
+    text-align: left;
+    border-radius: 5px;
+    float:left;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+
+.imageContentTittle{
+    background-color: black;
+    padding: 10px;
+    line-height: 30px;
+    font-size: 19px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.imageContentContent{
+    width: 100%;
+    height: 100%;
+    max-width: 590px;
+    max-height: 320px;
+    font-size: 19px;
+    padding: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    float:left;
+    display:flex;
+    overflow: auto;
+}
+
+.imageContentContentMap{
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    max-height: 250px;
+    font-size: 19px;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    float:left;
+    display:flex;
+    overflow: auto;
+}
+
+.imageContentContentGastro{
+    width: 100%;
+    height: 100%;
+    max-width: 780px;
+    max-height: 250px;
+    font-size: 19px;
+    padding: 10px;
+    padding-left: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    float:left;
+    display:flex;
+    overflow: auto;
+}
+
+
+.aboutHotel{
+    background-color: rgba(11, 11, 11, 1);
+}
+
+.offer{
+    min-height: 410px;
+    max-width: 1220px;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    margin: 0 auto;
+}
+
+.offerHref{
+    width: 390px;
+    height: 370px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.offerComponent{
+    color: white!important;
+    text-decoration: none!important;
+    width: 390px;
+    height: 370px;
+    float:left;
+    border-radius: 5px;
+    background-color: rgba(20, 20, 20, 0.7);
+}
+
+.offerComponent:hover{
+    background-color: rgba(30, 30, 30, 1);
+    cursor: pointer;
+}
+
+.offerComponent:hover .offerComponentTittle{
+    background-color: rgba(10, 10, 10, 1);
+}
+
+.offerComponent > a{
+    color: white!important;
+    text-decoration: none!important;
+}
+
+.btnHref{
+    color: white!important;
+    text-decoration: none!important;
+}
+
+.offerComponentTittle{
+    text-align: left;
+    background-color: black;
+    padding: 10px;
+    font-size: 19px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.offerComponentContentText{
+    font-size: 15px;
+    width: 380px;
+    padding: 20px;
+    margin: 0 auto;
+    height: 100px;
+}
+
+.offerComponentContent{
+
+}
+
+.welcomeContent a:hover{
+    color: #37454e;
+}
+
+.innerWelcomeContent{
+    width: 400px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.tittle{
+    background-color: rgba(16, 16, 16, 0.9);
+    position:absolute;
+    display:table-cell;
+    vertical-align:middle;
+    height: 110px;
+    width: 300px;
+    margin:auto;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    z-index:999;
+    border-radius: 5px;
+}
+
+.tittleWrapper{
+    padding: 10px;
+}
+
+.hotelName{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.secondImageHome{
+    padding: 10px;
+    min-height: 320px;
+    text-align: center;
+    opacity: 1;
+    background: url('../images/backgrounds/toruńPanorama.png')no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.footer{
+    display: flex;
+    height: 80px;
+    background-color: #101010;
+    padding-left:100px;
+    color: white;
+}
+
+.footerContent{
+    line-height: 80px;
+}
+
+
+.cycle-slideshow{
+    width: 100%;
+    height: 100%;
+    max-width: 590px;
+    max-height: 300px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.cycle-slideshow > img{
+    width: 100%!important;
+    height: 100%!important;
+    max-width: 590px!important;
+    max-height: 300px!important;
+}
+
+
+.imag{
+    width: 100%;
+    height: 100%;
+    max-width: 590px;
+    max-height: 300px;
+}
+
+.cycle-prev, .cycle-next{
+    text-align: center;
+    font-size: 200%;
+    color: #FFF;
+    background-color: rgba(255,255,255,0.6);
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    display: block;
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.cycle-prev:hover, .cycle-next:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cycle-prev{
+    left: 10px;
+}
+
+.cycle-next{
+    right: 10px;
+}
+
+.cycle-pager{
+    width: 100%;
+    position: absolute;
+    top: 5%;
+    left: 0;
+    text-align: center;
+    z-index: 999;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.cycle-pager span{
+    text-indent: 100%;
+    white-space: nowrap;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border: 1px solid #FFF;
+    border-radius: 10%;
+    margin: 0 10px;
+}
+
+.cycle-pager .cycle-pager-active { background: #FFF;}
+
+.navbar{
+    z-index: 9998!important;
+}
+
+.modal{
+    z-index: 9999!important;
+}
+
+
+h4{
+    padding: 0px;
+    margin: 0px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: inherit !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.mainPageContent{
+    padding: 10px;
+}
+
+.container{
+    display: none;
+    width:100%;
+    padding:0!important;
+}
+
+
+
+.button1{
+    font-size: 17px;
+    text-align: center;
+    line-height: 50px;
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    top: 65%;
+    left: 0px;
+    background: rgba(0,0,0,0.8);
+    z-index: 9997!important;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: width 1s;
+}
+
+.button1:hover{
+    width: 350px;
+    background: rgba(0,0,0,0.9);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.button2{
+    text-align: center;
+    width: 380px;
+    height: 135px;
+    position: absolute;
+    top: 38%;
+    right: 0px;
+    background: rgba(0,0,0,0.8);
+    z-index: 9997!important;
+    text-align: justify;
+    padding: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.button3{
+    font-size: 17px;
+    text-align: center;
+    line-height: 50px;
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    top: 75%;
+    left: 0px;
+    background: rgba(0,0,0,0.8);
+    z-index: 9997!important;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: width 1s;
+}
+
+.button3:hover{
+    width: 350px;
+    background: rgba(0,0,0,0.9);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.table thead th{
+    color: #090909!important;
+}
+.table tfoot th {
+    color: #090909!important;
+}
+

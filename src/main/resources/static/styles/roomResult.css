@@ -1,0 +1,147 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: inherit !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+#roomsResult{
+    margin: 0 auto;
+    maargin-top: 20px;
+}
+
+#roomsResult2{
+    margin: 0 auto;
+}
+
+#roomsResult > a{
+    color: black!important;
+    text-decoration: none!important;
+}
+
+.panel-body{
+    background: #f9f9f9;
+}
+
+.panel-overwrite{
+    border-radius: 0px;
+    border-right: none;
+    border-left: none;
+}
+
+.modal-header{
+    background: whitesmoke;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+
+.freeRoom{
+    display: flex;
+    width: 100%;
+    height: 199px;
+    background: whitesmoke;
+    border-radius: 6px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    box-shadow: 0 0 5px rgba(30, 30, 30, 0.5);
+}
+
+.freeRoom:hover{
+    background: #eaebff;
+    box-shadow: 0 0 15px rgba(30, 30, 30, 0.5);
+}
+
+.freeRoom:hover .roomResultImage {
+    opacity: 0.9;
+}
+
+.freeRoom:hover .roomResultOptions {
+    background: #f0f0f0;
+}
+
+.roomResultOptions:hover .roomResultData {
+    background: whitesmoke!important;
+}
+
+.roomResultData{
+    padding: 15px;
+}
+
+.roomResultImage{
+    width: 100%;
+    max-width: 270px;
+    height: 200px;
+    opacity: 1;
+    border-top-right-radius: 0px!important;
+    border-bottom-right-radius: 0px!important;
+    border: 1px groove grey;
+
+}
+
+.roomResultOptions{
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    padding: 0px 30px 0px 30px;
+    cursor: context-menu;
+    background: #f0f0f0;
+    padding: 15px;
+    border-left: 1px groove whitesmoke;
+    margin-left: auto;
+}
+
+#secondStep{
+    display: none;
+}
+
+#thirdStep{
+    display: none;
+}
+
+#loader2{
+    display: none;
+}
+
+.userData{
+    display:flex;
+    float: left;
+    width: 100%;
+    max-width: 600px;
+    margin-right: 20px;
+}
+
+.one{
+    float: left;
+}
+
+.details{
+    width: 100%;
+    max-width: 500px;
+}
+
+@media screen and (max-width: 1000px){
+    .one{
+        float:none;
+        display:block;
+        width:100%;
+    }
+    #roomsResult2{
+        height: 200px!important;
+    }
+}
+
+.userDataColumn{
+    max-width: 400px;
+}
+
+.modal-content textarea.form-control {
+    max-width: 100%;
+}

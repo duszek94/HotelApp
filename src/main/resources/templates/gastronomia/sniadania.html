@@ -1,0 +1,85 @@
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Toruń Hotel-Walter** | Noclegi | Imprezy | Posiłki - Hotel-Walter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/notify.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/loader.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-datetimepicker.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/roomResult.css}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+
+
+<div class="container">
+    <div class="content">
+        <div class="imageGastro">
+            <div class="imageHeader">
+                <img src="/images/hotelwalterlogo22.png"/>
+                Skontaktuj się z nami, tel. <div style="color: white; font-weight: bold; display: inline-block;">+48 56 654 25 83</div>
+            </div>
+
+            <div class="top-flex">
+                <div class="panel panel-default" style="margin-right: 20px;">
+                    <div class="panel-heading">
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-apple"></span>
+                        &nbsp;&nbsp;Śniadania
+                    </div>
+                    <div class="panel-body" style="min-height: 255px;">
+                        <h4>Rozpocznij dzień udanym śniadaniem w HOTELU WALTER ** <br><br><br>
+
+                            Bogate i urozmaicone śniadanie serwowane w naszej restauracji,czeka o poranku na Naszych gości.
+                            Komponuj swój własny zestaw składający się ze świeżych i naturalnych produktów. Kawa czy herbata?
+                            Wybór należy do Ciebie! A może śniadanie na świeżym powietrzu?<br><br>
+
+                        </h4>
+                    </div>
+                </div>
+
+                <div id="sliderGastro">
+                    <div class="cycle-slideshow">
+                        <span class="cycle-prev">&#8810;</span>
+                        <span class="cycle-next">&#8811;</span>
+                        <span class="cycle-pager"></span>
+                        <img src="/images/gastro/5.jpg" alt="" />
+                        <img src="/images/gastro/6.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="aboutHotel" style="display: none;">
+            <div class="offer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="fragments/navbar :: navbar"/>
+<div th:replace="fragments/modals :: modals"/>
+
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.cycle2.min.js}"></script>
+<script th:src="@{/js/notify.js}"></script>
+<script th:src="@{/js/moment-with-locales.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/js/bootstrapNotify.js}"></script>
+<script th:src="@{/js/basicScripts.js}"></script>
+
+</body>
+</html>
+

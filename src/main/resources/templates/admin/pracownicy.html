@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Toruń Hotel-Walter** | Noclegi | Imprezy | Posiłki - Hotel-Walter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/notify.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/loader.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-datetimepicker.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-table.css}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+
+
+
+<div class="container">
+    <div class="content">
+        <div class="imageUroczystosci">
+            <div class="imageHeader">
+                <img src="/images/hotelwalterlogo22.png"/>
+            </div>
+
+            <div class="top-block">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span>
+                        &nbsp;&nbsp;Rejestracja pracownika
+                    </div>
+                    <div class="panel-body">
+                        <form th:action="@{/register}" th:object="${worker}" method="post" role="form"
+                              data-toggle="validator" style="display: flex; margin-bottom: 0px!important;padding-bottom: 0px!important;">
+                            <div style="max-width: 50%">
+                                <div class="col-md-8 form-group" style="width: 100%">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input type="text" th:field="*{firstname}"
+                                               placeholder="Imię" class="form-control" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 form-group" style="width: 100%">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input type="text" th:field="*{lastname}"
+                                               placeholder="Nazwisko" class="form-control" required/>                                    </div>
+                                </div>
+
+                                <div class="col-md-8 form-group" style="width: 100%">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input type="text" th:field="*{username}"
+                                               placeholder="Login" class="form-control" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 form-group" style="width: 100%">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input th:field="*{password}" type="password"
+                                               placeholder="Hasło" class="form-control" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 form-group" style="width: 100%">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input type="password" class="form-control" placeholder="Potwierdź hasło" name="ConfirmPassword" data-fv-notempty="true"
+                                               data-fv-notempty-message="Please confirm password"
+                                               data-fv-identical="true"
+                                               data-fv-identical-field="password"
+                                               data-fv-identical-message="Both passwords must be identical" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="max-width: 50%">
+                                <div class="col-md-8 form-group" style="width: 100%">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input type="email" th:field="*{email}"
+                                               placeholder="Adres e-mail" class="form-control" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 form-group" style="width: 100%">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input type="tel" th:field="*{phone}"
+                                               placeholder="Telefon" class="form-control" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 form-group" style="width: 100%">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input th:field="*{adress}"
+                                               placeholder="Adres zamieszaknia" class="form-control" required />
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6 form-group" style="display: flex; height: 30px;">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" th:value="ROLE_WORKER" th:name="rolesValues">pracownik</label>
+                                    </div>
+                                    <div class="checkbox" style="margin-left: 35px;margin-top: 10px;">
+                                        <label><input type="checkbox" th:value="ROLE_ADMIN" th:name="rolesValues">admin</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 form-group" style="width: 100%; margin-top: 4px;">
+                                    <button id="register" type="submit" class="btn btn-success" name="register" style="width:100%;">Zarejestruj&nbsp;&nbsp; <span class="glyphicon glyphicon-send"></span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span>
+                        &nbsp;&nbsp;Wszyscy pracownicy
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="table-responsive">
+                            <div id="toolbarWorkers" style="color: #090909;">
+                                <button id="remove" class="btn btn-danger" disabled>
+                                    <i class="glyphicon glyphicon-remove"></i> Usuń
+                                </button>
+                            </div>
+
+                            <table id="tableWorkers"
+                                   data-toolbar="#toolbarWorkers"
+                                   data-show-refresh="true"
+                                   data-show-toggle="true"
+                                   data-show-columns="true"
+                                   data-detail-view="true"
+                                   data-detail-formatter="detailFormatter"
+                                   data-minimum-count-columns="2"
+                                   data-show-pagination-switch="true"
+                                   data-pagination="true"
+                                   data-page-list="[10, 25, 50, 100, ALL]"
+                                   data-show-footer="false"
+                                   data-align="center"
+                                   data-response-handler="responseHandler"
+                                   class="table table-striped"
+                                   style="color: #090909;">
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div id="notify_layer" style="position: fixed; top: 100px;"></div>
+
+</div>
+
+<div class="modal fade" id="editWorker" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edycja danych pracownika</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div id="editReservationForm">
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text"
+                                       id="editWorkerFirstname"
+                                       name="firstname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Imię"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text"
+                                       id="editWorkerLastname"
+                                       name="lastname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Nazwisko"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text"
+                                       id="editWorkerLogin"
+                                       name="login"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Login"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="text"
+                                       id="editWorkerEmail"
+                                       name="email"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="E-mail"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                <input type="text"
+                                       id="editWorkerPhone"
+                                       name="phone"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Telefon"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group" style="width: 100%;">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input type="text"
+                                       id="editWorkerAdress"
+                                       name="adress"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       placeholder="Adres zamieszaknia"
+                                       style="color: black;width: 100%;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <button id="commitEditWorker" type="button" class="btn btn-success">Zatwierdź edycję</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/navbar :: navbar"/>
+<div th:replace="fragments/modals :: modals"/>
+
+
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.cycle2.min.js}"></script>
+<script th:src="@{/js/notify.js}"></script>
+<script th:src="@{/js/moment-with-locales.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/js/bootstrapNotify.js}"></script>
+<script th:src="@{/js/bootstrap-table.js}"></script>
+<script th:src="@{/js/bootstrap-table-export.js}"></script>
+<script th:src="@{/js/bootstrap-table-editable.js}"></script>
+
+<script th:inline="javascript">
+
+    $(document).ready(function () {
+        var errorMessage = [[${errorMessage}]];
+        var successMessage = [[${successMessage}]];
+
+        if(errorMessage !== null){
+            notify.danger(errorMessage)
+        }
+        if(successMessage !== null){
+            notify.success(successMessage)
+        }
+    });
+
+</script>
+
+
+
+
+<script>
+    var $table = $('#tableWorkers'),
+        $remove = $('#remove'),
+        selections = [];
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    var preloader = $('.loader');
+    var showbox = $('.showbox');
+
+
+    function initTable(data) {
+        $table.bootstrapTable({
+            height: getHeight(),
+            data: data,
+            columns: [
+                {
+                    title: 'id',
+                    field: 'state',
+                    checkbox: true,
+                },
+                {
+                    title: 'ID w systemie',
+                    field: 'workerId',
+                    sortable: true,
+                },
+                {
+                    field: 'username',
+                    title: 'Login',
+                    sortable: true,
+                },
+                {
+                    field: 'firstname',
+                    title: 'Imię',
+                    sortable: true,
+                },
+                {
+                    field: 'lastname',
+                    title: 'Nazwisko',
+                    sortable: true,
+                },
+                {
+                    field: 'phone',
+                    title: 'Telefon',
+                    sortable: true,
+                },
+                {
+                    field: 'email',
+                    title: 'Adres e-mail',
+                    sortable: true,
+                },
+                {
+                    field: 'enabled',
+                    title: 'Aktywny',
+                    sortable: true,
+                },
+                {
+                    field: 'operate',
+                    title: 'Edytuj',
+                    align: 'center',
+                    formatter: editFormatter,
+                    events: editEvents
+                },
+                {
+                    field: 'setActive',
+                    title: 'Aktywuj',
+                    align: 'center',
+                    formatter: setActiveFormatter,
+                    events: setActiveEvents
+                }
+            ],
+        });
+
+
+        $table.bootstrapTable('uncheckAll');
+
+        setTimeout(function () {
+            $table.bootstrapTable('resetView');
+        }, 200);
+        $table.on('check.bs.table uncheck.bs.table ' +
+            'check-all.bs.table uncheck-all.bs.table', function () {
+            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+
+            selections = getIdSelections();
+        });
+
+        $table.on('all.bs.table', function (e, name, args) {
+            console.log(name, args);
+        });
+        $table.on('refresh.bs.table', function (params) {
+            $(preloader).css({'display': 'block'});
+            console.log("Table refreshed!");
+            console.log(params);
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/reservation/all',
+                dataType: 'json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+                success: function (workersDto) {
+                    if(!workersDto.success){
+                        err();
+                        return;
+                    }
+
+                    var workers = workersDto.list;
+
+                    initTable(workers);
+
+                    $(preloader).css({'display': 'none'});
+                    $(showbox).css({'display': 'none'});
+                    $('.container').fadeIn(1600);
+                },
+                error: function () {
+                    notify.danger("Wystąpił błąd podczas pobierania danych z bazy");
+                }
+            });
+        });
+        $remove.click(function () {
+
+            var ids = getIdSelections();
+            var idsJSON = JSON.stringify(ids);
+
+            $.ajax({
+                url: '/api/worker/delete',
+                dataType: 'text',
+                type: 'post',
+                contentType: 'application/json',
+                data: idsJSON,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+                success(msg){
+                    notify.success(msg);
+                    refreshTable();
+                },
+                error(msg){
+                    notify.danger(msg);
+                    refreshTable();
+                }
+            });
+
+            $remove.prop('disabled', true);
+        });
+        $(window).resize(function () {
+            $table.bootstrapTable('resetView', {
+                height: getHeight()
+            });
+        });
+    }
+
+    function detailFormatter(index, row) {
+        var html = [];
+        var roles = new Array();
+        var rolesText = "";
+
+        roles = row.roles;
+
+        for(var i = 0; i < roles.length; i++){
+
+            if(roles[i].role == "ROLE_ADMIN"){
+                rolesText += "administrator ";
+            }
+            if(roles[i].role == "ROLE_WORKER"){
+                rolesText += "pracownik ";
+            }
+        }
+
+        html.push('<p><b>ID w systemie: </b> ' + row.workerId + '</p>' +
+            '<p><b>Imię: </b> ' + row.firstname + '</p>' +
+            '<p><b>Nazwisko: </b> ' + row.lastname + ' </p>' +
+            '<p><b>Login: </b> ' + row.username + '</p>' +
+            '<p><b>Telefon: </b> ' + row.phone + '</p>' +
+            '<p><b>E-mail: </b> ' + row.email + '</p>' +
+            '<p><b>Adres: </b> ' + row.adress + '</p>' +
+            '<p><b>Aktywny: </b> ' + row.enabled + '</p>'+
+            '<p><b>Role: </b> ' + rolesText + '</p>');
+        return html.join('');
+    }
+
+
+    function responseHandler(res) {
+        $.each(res.rows, function (i, row) {
+            row.workerId = $.inArray(row.workerId, selections) !== -1;
+        });
+        return res;
+    }
+
+    function getIdSelections() {
+        return $.map($table.bootstrapTable('getSelections'), function (row) {
+            return row.workerId
+        });
+    }
+
+    function editFormatter(value, row, index) {
+        return [
+            '<a class="editWorker" title="Edytuj" data-toggle="modal" data-target="#editWorker" style="cursor: pointer">',
+            '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    function setActiveFormatter(value, row, index) {
+        return [
+            '<a class="setActive" title="Aktywuj" style="cursor: pointer">',
+            '<i class="glyphicon glyphicon-play"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    window.editEvents = {
+        'click .editWorker': function (e, value, row, index) {
+
+            var firstname = $('#editWorkerFirstname');
+            var lastname = $('#editWorkerLastname');
+            var login = $('#editWorkerLogin');
+            var phone = $('#editWorkerPhone');
+            var email = $('#editWorkerEmail');
+            var adress = $('#editWorkerAdress');
+
+            firstname.val(row.firstname);
+            lastname.val(row.lastname);
+            login.val(row.username);
+            phone.val(row.phone);
+            email.val(row.email);
+            adress.val(row.adress);
+
+            $('#commitEditWorker').click(function () {
+
+                var workerDto = {
+                    "workerId" : row.workerId,
+                    "firstname" : firstname.val(),
+                    "lastname" : lastname.val(),
+                    "username" : login.val(),
+                    "phone" : phone.val(),
+                    "email" : email.val(),
+                    "adress" : adress.val()
+                };
+
+                var workerData = JSON.stringify(workerDto);
+
+
+                $.ajax({
+                    url: '/api/worker/update',
+                    dataType: 'text',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: workerData,
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+
+                    success: function (msg) {
+                        $('#editWorker').modal('hide');
+
+                        if(msg == "Uaktualniono dane użytkownika"){
+                            notify.success(msg);
+                        }else{
+                            notify.danger(msg);
+                        }
+
+                        refreshTable();
+                    },
+                    error: function () {
+                        $('#editWorker').modal('hide');
+                        notify.danger('Wystąpił błąd podczas uaktualniania danych pracownika', '#notification');
+
+                        refreshTable();
+                        return;
+                    }
+                });
+
+            });
+
+
+        }
+    };
+
+    window.setActiveEvents = {
+        'click .setActive': function (e, value, row, index) {
+            var id = JSON.stringify(row.workerId);
+
+            $.ajax({
+                url: '/api/worker/activate',
+                dataType: 'text',
+                type: 'post',
+                contentType: 'application/json',
+                data: id,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+                success(msg){
+                    if(msg == "Konto zostało aktywowane"){
+                        notify.success(msg);
+                    }else{
+                        notify.danger(msg);
+                    }
+                    refreshTable();
+                },
+                error(msg){
+                    notify.danger(msg);
+                    refreshTable();
+                }
+            });
+        }
+    };
+
+
+
+    function totalTextFormatter(data) {
+        return 'Total';
+    }
+
+    function getHeight() {
+        return $(window).height() - $('.navbar').outerHeight(true) + 2;
+    }
+
+    loadDataForTable();
+
+    function loadDataForTable() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/worker/all',
+            dataType: 'json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (workersDto) {
+                if(!workersDto.success){
+                    err();
+                    return;
+                }
+
+                var workers = workersDto.list;
+
+                initTable(workers);
+
+                $(preloader).css({'display': 'none'});
+                $(showbox).css({'display': 'none'});
+                $('.container').fadeIn(1600);
+            },
+            error: function () {
+                notify.danger("Wystąpił błąd podczas pobierania danych z bazy");
+            }
+        });
+    }
+
+    function refreshTable() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/worker/all',
+            dataType: 'json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (workersDto) {
+                if(!workersDto.success){
+                    err();
+                    return;
+                }
+
+                var workers = workersDto.list;
+
+                $table.bootstrapTable("load", workers);
+                $table.bootstrapTable('uncheckAll');
+
+                $(preloader).css({'display': 'none'});
+            },
+            error: function () {
+                notify.danger("Wystąpił błąd podczas pobierania danych z bazy");
+            }
+        });
+    }
+
+
+    function err() {
+        $(showbox).show();
+        $(preloader).show();
+    }
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
+

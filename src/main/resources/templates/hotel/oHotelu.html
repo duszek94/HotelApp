@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Toruń Hotel-Walter** | Noclegi | Imprezy | Posiłki - Hotel-Walter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/oHotelu.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/notify.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/slider.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/loader.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-datetimepicker.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/roomResult.css}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<body>
+
+
+
+
+<div class="container">
+    <div class="content">
+        <div class="imageUroczystosci">
+            <div class="imageHeader">
+                <img src="/images/hotelwalterlogo22.png"/>
+                Skontaktuj się z nami, tel. <div style="color: white; font-weight: bold; display: inline-block;">+48 56 654 25 83</div>
+            </div>
+
+
+
+            <!-- The Modal/Lightbox -->
+            <div id="myModal" class="modal2">
+                <span class="close cursor" onclick="closeModal()">&times;</span>
+                <div class="modal-content2">
+
+                    <div class="wrapper">
+                        <div class="mySlides">
+                            <div class="numbertext">1 / 5</div>
+                            <img src="/images/oHotelu/1.jpg">
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="numbertext">2 / 5</div>
+                            <img src="/images/oHotelu/2.jpg">
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="numbertext">3 / 5</div>
+                            <img src="/images/oHotelu/3.jpg">
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="numbertext">4 / 5</div>
+                            <img src="/images/oHotelu/4.jpg">
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="numbertext">5 / 5</div>
+                            <img src="/images/oHotelu/5.jpg">
+                        </div>
+
+                        <!-- Next/previous controls -->
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <!-- Caption text -->
+                        <div class="caption-container">
+                            <p id="caption"></p>
+                        </div>
+                    </div>
+
+
+                    <!-- Thumbnail image controls -->
+                    <div class="row thumbnails">
+                        <div class="column">
+                            <img class="demo" src="/images/oHotelu/1.jpg" onclick="currentSlide(1)" alt="Hotel">
+                        </div>
+
+                        <div class="column">
+                            <img class="demo" src="/images/oHotelu/2.jpg" onclick="currentSlide(2)" alt="Hotel">
+                        </div>
+
+                        <div class="column">
+                            <img class="demo" src="/images/oHotelu/3.jpg" onclick="currentSlide(3)" alt="Hotel">
+                        </div>
+
+                        <div class="column">
+                            <img class="demo" src="/images/oHotelu/4.jpg" onclick="currentSlide(4)" alt="Hotel">
+                        </div>
+
+                        <div class="column">
+                            <img class="demo" src="/images/oHotelu/5.jpg" onclick="currentSlide(5)" alt="Hotel">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="top-flex">
+                <div class="panel panel-default" style="margin-right: 20px;">
+                    <div class="panel-heading">
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span>
+                        &nbsp;&nbsp;O hotelu
+                    </div>
+                    <div class="panel-body" style="min-height: 255px;">
+                        <h4>
+                            <img src="/images/oHoteluMainPage.png" align="right" style="border-radius: 5px!important;;padding-left: 20px;padding-top: 10px;"/>
+                            Położony w zielonej części Torunia, 5 km od Starego Miasta, hotel WALTER oferuje pokoje z bezpłatnym bezprzewodowym dostępem do Internetu. Na miejscu do dyspozycji Gości są bezpłatne miejsca parkingowe.<br><br>
+
+                            Większość pokoi w hotelu WALTER wyposażona została w telewizor z płaskim ekranem i kanałami telewizji satelitarnej. Prawie wszystkie z nich dysponują balkonem, a w każdym pokoju znajduje się łazienka z kabiną prysznicową.<br><br>
+
+                            W hotelowej restauracji Portowa serwowane są specjały tradycyjnej kuchni polskiej oraz dania kuchni europejskiej. Codziennie rano w hotelu serwowane jest urozmaicone śniadanie w formie bufetu.<br><br>
+
+                            Podczas pobytu Goście mogą korzystać z boiska do piłki nożnej i placu zabaw dla dzieci. Za dodatkową opłatą mogą także korzystać ze sprzętu do paintballa i miejsca do grillowania.<br><br>
+
+                            Hotel WALTER położony jest 8 km od dworca kolejowego Toruń Główny. Od dworca autobusowego dzieli go 6 km. Hotel jest oddalony o 20 km od Ciechocinka i o 30 km od Bydgoszczy.<br><br><br>
+                            <img src="/images/oHotelu/oHoteluGastro.jpg" align="left" style="margin-right: 20px; "/>
+                            <div style="text-align: left">
+                                <b>Najpopularniejsze udogodnienia:</b><br><br>
+                                - bezpłatny parking <br>
+                                - zwierzęta domowe są akceptowane <br>
+                                - bezpłatne WiFi<br>
+                                - restauracja<br>
+                                - pokoje dla niepalących <br>
+                                - całodobowa recepcja <br>
+                                - bar <br>
+                                - ekspresowe zameldowanie / wymeldowanie
+                            </div>
+
+                        </h4>
+                    </div>
+                    <div style="margin: 0 auto; max-width: 1000px;padding-bottom: 20px;">
+                        <!-- Images used to open the lightbox -->
+                        <div class="row">
+                            <div class="column">
+                                <img src="/images/oHotelu/1.jpg" onclick="openModal();currentSlide(1)" class="hover-shadow">
+                            </div>
+                            <div class="column">
+                                <img src="/images/oHotelu/2.jpg" onclick="openModal();currentSlide(2)" class="hover-shadow">
+                            </div>
+                            <div class="column">
+                                <img src="/images/oHotelu/3.jpg" onclick="openModal();currentSlide(3)" class="hover-shadow">
+                            </div>
+                            <div class="column">
+                                <img src="/images/oHotelu/4.jpg" onclick="openModal();currentSlide(4)" class="hover-shadow">
+                            </div>
+                            <div class="column">
+                                <img src="/images/oHotelu/5.jpg" onclick="openModal();currentSlide(5)" class="hover-shadow">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="notify_layer" style="position: fixed; top: 100px;"></div>
+</div>
+
+<div th:replace="fragments/navbar :: navbar"/>
+<div th:replace="fragments/modals :: modals"/>
+
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.cycle2.min.js}"></script>
+<script th:src="@{/js/sliderThumbnails.js}"></script>
+<script th:src="@{/js/notify.js}"></script>
+<script th:src="@{/js/moment-with-locales.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/js/bootstrapNotify.js}"></script>
+<script th:src="@{/js/basicScripts.js}"></script>
+
+
+
+
+</body>
+</html>
+

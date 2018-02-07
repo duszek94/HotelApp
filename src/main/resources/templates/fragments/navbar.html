@@ -1,0 +1,142 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <div th:fragment="navbar-css">
+        <!-- this is header-css -->
+        <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/styles/notify.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/styles/loader.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-datetimepicker.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/styles/roomResult.css}"/>
+    </div>
+</head>
+<body>
+<div th:fragment="navbar">
+    <!-- this is navbar -->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/}" style="background: black;">Hotel Walter</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul sec:authorize="isAnonymous()" class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Hotel<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/hotel/oHotelu}">O hotelu</a></li>
+                            <li><a th:href="@{/hotel/historia}">Historia</a></li>
+                            <li><a th:href="@{/hotel/atrakcje}">Okoliczne atrakcje</a></li>
+                            <li><a th:href="@{/hotel/kontakt}">Kontakt</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pokoje<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/pokoje/2os}">2-osobowy</a></li>
+                            <li><a th:href="@{/pokoje/3os}">3-osobowy</a></li>
+                            <li><a th:href="@{/pokoje/ap}">Apartament</a></li>
+                            <li><a th:href="@{/pokoje/apDL}">Apartament DeLux</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gastronomia<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/gastronomia/restauracja}">Restauracja</a></li>
+                            <li><a th:href="@{/gastronomia/bar}">Bar</a></li>
+                            <li><a th:href="@{/gastronomia/sniadania}">Śniadania</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Oferta<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/oferta/uroczystosci}">Uroczystości rodzinne</a></li>
+                            <li><a th:href="@{/oferta/specjalne}">Oferty specjalne</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dla firm<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/dlafirm/konferencje}">Konferencje</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li sec:authorize="isAuthenticated()" class="userName">
+                        <a th:href="@{/pracownik/konto}">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-user"></span>&nbsp;
+                            <span sec:authentication="principal.username"/>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li sec:authorize="isAnonymous()" class="active">
+                        <a href="#" data-toggle="modal" data-target="#reserve">
+                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;Rezerwacja online
+                        </a>
+                    </li>
+
+                    <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_WORKER')" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Panel pracownika<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/pracownik/rezerwacje/pokoje}">Rezerwacje pokoi</a></li>
+                            <li><a th:href="@{/pracownik/rezerwacje/wydarzenia}">Wydarzenia</a></li>
+                            <li><a th:href="@{/pracownik/pokoje}">Pokoje</a></li>
+                        </ul>
+                    </li>
+
+                    <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Panel administratora<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/admin/pracownicy}">Pracownicy</a></li>
+                            <li><a th:href="@{/admin/pokoje}">Pokoje</a></li>
+                        </ul>
+                    </li>
+                    <li sec:authorize="isAnonymous()">
+                        <a th:href="@{/loginPage}">
+                            <span class="glyphicon glyphicon-log-in"></span>&nbsp;Zaloguj
+                        </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a th:href="@{/logout}">
+                            <span class="glyphicon glyphicon-log-out"></span>&nbsp;Wyloguj
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="showbox" >
+        <div class="loader" style="margin-top: 100px;">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footerContent">© 2017 Hotel-Walter w Toruniu</div>
+        <div class="footerContent" style="margin-left: auto;padding-right:100px;">Created by duszek&nbsp;&trade;</div>
+    </div>
+
+</div>
+
+</body>
+</html>
+

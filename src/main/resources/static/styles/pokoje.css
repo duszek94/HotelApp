@@ -1,0 +1,48 @@
+.imagePokojeBlack{
+    min-height: 390px;
+    text-align: center;
+    opacity: 1;
+    background: black no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.black{
+    width: 100%;
+
+}
+
+.blackContentWrapper{
+    font-size: 19px;
+    display:block;
+    overflow:auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blackContent{
+    float: left;
+    padding: 20px;
+    text-align: left;
+}
+
+.imageContentRooms{
+    min-height: 370px;
+    max-width: 1200px;
+}
+
+.imageContentContentRooms{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    min-height: 310px;
+}
+
+.roomsContent{
+    max-width: 500px;
+    padding: 10px;
+    padding-left: 20px;
+}
